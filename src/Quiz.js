@@ -8,14 +8,12 @@ class Quiz extends Component {
     constructor(props) {
         super(props)
 
-        this.setState(() => ({
-            quiz_position: 1
-          }));
+        this.state = { quiz_position: 1 }
     }
 
     showNextQuestion() {
-        this.setState({
-            quiz_position: quiz_position++
+        this.setState((state) => {
+            return { quiz_position: state.quiz_position++ }
         })
     }
 
