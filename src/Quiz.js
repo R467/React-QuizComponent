@@ -5,12 +5,18 @@ import QuizEnd from './QuizEnd'
 let quizData = require('./quiz_data.json')
 
 class Quiz extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
-        this.state = {
+        this.setState(() => ({
             quiz_position: 1
-        }
+          }));
+    }
+
+    showNextQuestion() {
+        this.setState({
+            quiz_position: quiz_position++
+        })
     }
 
     render() {
@@ -20,7 +26,8 @@ class Quiz extends Component {
             <div>
                 {isQuizEnd 
                     ? <QuizEnd />
-                    : <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]} />
+                    : <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position - 1] } 
+                        showNextQuestionHandler={this.showNextQuestion.bind(this)} />
                 }                
             </div>
         )
